@@ -10,7 +10,6 @@ if cmp(a, b) returns  1, then a > b;
 if cmp(a, b) returns  0, then a == b.
 '''
 
-import random
 
 def cmp_standard(a, b):
     '''
@@ -79,7 +78,7 @@ def _merged(xs, ys, cmp=cmp_standard):
     '''
     final = []
     x = 0
-    y = 0 
+    y = 0
     while x < len(xs) and y < len(ys):
         if cmp(xs[x], ys[y]) == -1:
             final.append(xs[x])
@@ -90,12 +89,10 @@ def _merged(xs, ys, cmp=cmp_standard):
     while x < len(xs):
         final.append(xs[x])
         x += 1
-    while y < len(ys): 
+    while y < len(ys):
         final.append(ys[y])
         y += 1
     return final
-                
-
 
 
 def merge_sorted(xs, cmp=cmp_standard):
@@ -115,12 +112,12 @@ def merge_sorted(xs, cmp=cmp_standard):
     You should not modify the input list xs in any way.
     '''
     if len(xs) <= 1:
-        return xs 
+        return xs
     else:
         mid = len(xs) // 2
         left = xs[:mid]
         right = xs[mid:]
-        return _merged(merge_sorted(left, cmp = cmp), merge_sorted(right, cmp = cmp), cmp=cmp)
+        return _merged(merge_sorted(left, cmp=cmp), merge_sorted(right, cmp=cmp), cmp=cmp)
 
 
 def quick_sorted(xs, cmp=cmp_standard):
@@ -128,7 +125,7 @@ def quick_sorted(xs, cmp=cmp_standard):
     Quicksort is like mergesort,
     but it uses a different strategy to split the list.
     Instead of splitting the list down the middle,
-    a "pivot" value is randomly selected, 
+    a "pivot" value is randomly selected,
     and the list is split into a "less than" sublist and a "greater than" sublist.
 
     The pseudocode is:
@@ -153,7 +150,7 @@ def quick_sorted(xs, cmp=cmp_standard):
     xs_smaller = [x for x in xs if cmp(x, pivot) == -1]
     xs_bigger = [x for x in xs if cmp(x, pivot) == 1]
     xs_equal = [x for x in xs if cmp(x, pivot) == 0]
-    return quick_sorted(xs_smaller, cmp = cmp) + xs_equal + quick_sorted(xs_bigger, cmp = cmp)
+    return quick_sorted(xs_smaller, cmp=cmp) + xs_equal + quick_sorted(xs_bigger, cmp=cmp)
 
 
 def quick_sort(xs, cmp=cmp_standard):
